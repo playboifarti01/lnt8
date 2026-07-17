@@ -1,0 +1,525 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Circular";
+  src: url("fonts/circular-std-2.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Knockout";
+  src: url("fonts/Knockout-66-Full- Flyweight.otf") format("opentype");
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: #111;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs {
+  height: 50px;
+  display: flex;
+  background: #151515;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.tab {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: #222;
+  color: #fff;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+}
+
+.controls {
+  width: 320px;
+  background: #1a1a1a;
+  border-right: 1px solid #2a2a2a;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.panel {
+  display: none;
+}
+
+.panel.active {
+  display: block;
+}
+
+label {
+  font-size: 12px;
+  color: #bbb;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+}
+
+button {
+  padding: 8px 10px;
+  border: none;
+  background: #333;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.chip {
+  flex: 1;
+  height: 40px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #222;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.chip.active {
+  background: #555;
+}
+
+.preview {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover {
+  width: 600px;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* DESIGN 1 */
+.design1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  transition: background 0.2s ease;
+}
+
+.d1-title {
+  font-size: 54px;
+  font-weight: 900;
+}
+
+#d1Title {
+  font-size: 80px;
+  font-family: "Circular", Arial, sans-serif;
+  color: #000;
+  text-align: center;
+}
+
+/* DESIGN 2 */
+.design2 {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.d2-top {
+  height: 107px;
+}
+
+.d2-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.d2-middle {
+  height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  font-family: Circular, Arial, sans-serif;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+}
+
+.d2-bottom {
+  height: 361px;
+  overflow: hidden;
+}
+
+.d2-bottom img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* DESIGN 4 */
+.design4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.d4-top {
+  height: 300px;
+  top: 0;
+}
+
+.d4-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.d4-middle img {
+  height: 373px;
+}
+
+.d4-bottom {
+  display: flex;
+  font-size: 67px;
+  letter-spacing: -4px;
+  font-family: Circular, Arial, sans-serif;
+  color: #000;
+  bottom: 3%;
+  text-align: center;
+}
+
+.base {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.overlay {
+  position: absolute; /* Pulls the image out of layout flow to place it on top */
+  z-index: 10;
+}
+
+/* DESIGN 3 */
+.design3 {
+  background: #8ace00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.d3-text {
+  font-size: 100px;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  color: #000;
+  text-align: center;
+  filter: blur(1px);
+  width: 600px;
+  overflow-wrap: break-word;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-box {
+  width: 80%;
+  height: 80%;
+  background: #111;
+  padding: 10px;
+}
+
+.shut {
+  display: none;
+}
+
+/* DESIGN 5 */
+.design5 {
+  background: #02000a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.d5-text {
+  font-size: 120px;
+  font-family: "Knockout", Arial, sans-serif;
+  letter-spacing: 1px;
+  color: #cdadc7;
+  text-align: center;
+  width: 600px;
+  overflow-wrap: break-word;
+}
+
+/* ── TABLET (iPad, ≤1024px) ── */
+@media (max-width: 1024px) {
+  html,
+  body {
+    overflow: auto;
+  }
+
+  .app {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .main {
+    flex-direction: column;
+  }
+
+  .controls {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #2a2a2a;
+    overflow-y: visible;
+  }
+
+  .preview {
+    padding: 24px 16px;
+  }
+
+  .cover {
+    width: min(600px, 90vw);
+    height: min(600px, 90vw);
+  }
+
+  .d2-top {
+    height: calc(107px * (min(600px, 90vw) / 600));
+  }
+
+  .d2-middle {
+    height: calc(132px * (min(600px, 90vw) / 600));
+    font-size: calc(60px * (min(600px, 90vw) / 600));
+  }
+
+  .d2-bottom {
+    height: calc(361px * (min(600px, 90vw) / 600));
+  }
+
+  /* 4 */
+
+  .d4-top {
+    height: calc(300px * (min(600px, 90vw) / 600));
+  }
+
+  .d4-middle {
+    height: calc(373px * (min(600px, 90vw) / 600));
+  }
+
+  .d4-bottom {
+    height: calc(361px * (min(600px, 90vw) / 600));
+    font-size: calc(60px * (min(600px, 90vw) / 600));
+    letter-spacing: calc(-4px * (min(600px, 90vw) / 600));
+  }
+
+  #d1Title {
+    font-size: calc(80px * (min(600px, 90vw) / 600));
+  }
+
+  .d3-text {
+    font-size: calc(80px * (min(600px, 90vw) / 600));
+  }
+
+  .modal-box {
+    width: 90%;
+    height: auto;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+}
+
+.d2-top {
+  height: calc(107px * (min(600px, 90vw) / 600));
+}
+
+.d2-middle {
+  height: calc(132px * (min(600px, 90vw) / 600));
+  font-size: calc(60px * (min(600px, 90vw) / 600));
+}
+
+.d2-bottom {
+  height: calc(361px * (min(600px, 90vw) / 600));
+}
+
+/* design 4 */
+.d4-top {
+  height: calc(300px * (min(600px, 90vw) / 600));
+}
+
+.d4-middle {
+  height: calc(300px * (min(600px, 90vw) / 600));
+}
+
+.d4-bottom {
+  font-size: calc(67px * (min(600px, 90vw) / 600));
+  letter-spacing: calc(-4px * (min(600px, 90vw) / 600));
+}
+
+#d1Title {
+  font-size: calc(80px * (min(600px, 90vw) / 600));
+}
+
+.d3-text {
+  font-size: calc(80px * (min(600px, 90vw) / 600));
+}
+
+.d5-text {
+  font-size: calc(120px * (min(600px, 90vw) / 600));
+  letter-spacing: calc(1px * (min(600px, 90vw) / 600));
+}
+
+.modal-box {
+  width: 90%;
+  height: auto;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* ── MOBILE (≤600px) ── */
+@media (max-width: 660px) {
+  .tabs {
+    height: auto;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    flex: 1 1 33%;
+    padding: 10px 4px;
+    font-size: 12px;
+  }
+
+  .controls {
+    padding: 10px;
+  }
+
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    flex: 1 1 calc(50% - 4px);
+    height: 36px;
+    font-size: 13px;
+  }
+
+  button#downloadBtn {
+    margin-top: 16px;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .preview {
+    padding: 16px 10px 32px;
+  }
+
+  .cover {
+    width: 92vw;
+    height: 92vw;
+  }
+
+  .d2-top {
+    height: calc(107px * (92vw / 600px));
+  }
+
+  .d2-middle {
+    height: calc(132px * (92vw / 600px));
+    font-size: calc(60px * (92vw / 600px));
+  }
+
+  .d2-bottom {
+    height: calc(361px * (92vw / 600px));
+  }
+
+  /* 4 */
+  .d4-top {
+    height: calc(300px * (92vw / 600px));
+  }
+
+  .d4-middle img {
+    height: calc(373px * (92vw / 600px));
+  }
+
+  .d4-bottom {
+    font-size: calc(67px * (92vw / 600px));
+    letter-spacing: calc(-4px * (92vw / 600px));
+  }
+
+  #d1Title {
+    font-size: calc(80px * (92vw / 600px));
+  }
+
+  .d3-text {
+    font-size: calc(80px * (92vw / 600px));
+  }
+
+  .d5-text {
+    font-size: calc(120px * (92vw / 600px));
+    letter-spacing: calc(1px * (92vw / 600px));
+  }
+
+  input[type="color"] {
+    width: 44px;
+    height: 44px;
+    padding: 2px;
+  }
+
+  .modal-box {
+    width: 96%;
+    padding: 8px;
+  }
+}

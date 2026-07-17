@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Consolas;
+  background-color: black;
+  text-shadow:
+    0 0 1px #20c20e,
+    0 0 11px #20c20e;
+}
+
+@font-face {
+  font-family: "Consolas";
+  src: url("fonts/Consolas-Regular.ttf") format("truetype");
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  font-size: 30px;
+  color: #ffffff;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #808080;
+}
+
+div {
+  display: flex;
+  align-items: center;
+}
+
+.top {
+  display: flex;
+}
+
+.sub-top {
+  display: flex;
+  width: 15vw;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.logo-container {
+  width: 100px;
+  height: 100px;
+  background-image: url("../img/logo.png"); /* The original image */
+  background-size: cover; /* Ensures the image fills the area */
+  background-position: center;
+  transition: background-image 0 ease;
+}
+.logo-container:hover {
+  background-image: url("../img/logo2.png");
+}
+.logo-active {
+  background-image: url("../img/logo-active.png") !important;
+}
+
+.header {
+  width: 15vw;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.header a {
+  text-align: center;
+}
+.sub-header {
+  justify-content: center;
+  background-color: black;
+  margin-bottom: 2vw;
+}
+
+.active {
+  color: #20c20e !important;
+}
+
+.middle {
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin-left: 5vw;
+}
+
+.middle p {
+  color: #20c20e;
+}
