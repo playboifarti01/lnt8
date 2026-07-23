@@ -10,9 +10,6 @@ body {
   padding: 0;
   font-family: Consolas;
   background-color: black;
-  text-shadow:
-    0 0 1vw #20c20e,
-    0 0 0.5vw #20c20e;
 }
 
 @font-face {
@@ -51,6 +48,7 @@ div {
 img {
   width: 100%;
 }
+
 .everything {
   display: flex;
   flex-direction: column;
@@ -102,7 +100,7 @@ img {
 }
 
 .header {
-  width: 15vw;
+  width: 10vw;
   background-color: black;
   display: flex;
   justify-content: center;
@@ -140,7 +138,8 @@ img {
   width: 80vw;
 }
 
-.content-about p, .xp {
+.content-about p,
+.xp {
   display: flex;
   justify-content: flex-start;
   font-size: 1.16vw;
@@ -183,13 +182,14 @@ img {
   border-radius: 2vw;
   padding: 3vw;
 }
-.content-about p, .xp {
+.content-about p,
+.xp {
   font-size: 1.1vw;
 }
 .content-about h5 {
   font-size: 3vw;
 }
-.content-about a{
+.content-about a {
   color: #20c20e;
   text-decoration: underline;
 }
@@ -201,6 +201,9 @@ img {
 .footer p {
   font-size: 1vw !important;
   padding: 1.5vw;
+}
+.text {
+  font-size: 3vw;
 }
 
 @media (max-width: 1440px) {
@@ -216,9 +219,6 @@ img {
     padding: 0;
     font-family: Consolas;
     background-color: black;
-    text-shadow:
-      0 0 1vw #20c20e,
-      0 0 0.5vw #20c20e;
   }
 
   a {
@@ -269,7 +269,7 @@ img {
   }
   .card p {
     font-size: 2vw;
-}
+  }
   .header a {
     font-size: 3vw;
     text-align: center;
@@ -314,7 +314,8 @@ img {
     width: 98vw;
     display: flex;
   }
-  .content-about p, .xp {
+  .content-about p,
+  .xp {
     font-size: 3vw;
     text-indent: 2vw;
   }
@@ -332,6 +333,9 @@ img {
     font-size: 1.5vw !important;
     padding: 2vw;
   }
+  .text {
+    font-size: 3vw;
+  }
 }
 
 @media (max-width: 425px) {
@@ -347,9 +351,6 @@ img {
     padding: 0;
     font-family: Consolas;
     background-color: black;
-    text-shadow:
-      0 0 1vw #20c20e,
-      0 0 0.5vw #20c20e;
   }
 
   .everything {
@@ -366,11 +367,23 @@ img {
     position: sticky;
     max-width: 100vw;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     top: 0;
     display: flex;
     width: 100%;
-    justify-content: space-around;
+  }
+  .header a {
+    font-size: 6vw !important ;
+  }
+  .header {
+    padding-left: 6vw;
+    padding-right: 4vw;
+  }
+  .header .contacts {
+    margin-left: 10vw;
+  }
+  .logo-header {
+    width: 0 !important;
   }
   .sub-top {
     all: revert;
@@ -379,7 +392,7 @@ img {
     justify-content: center;
     margin: 0;
     background-color: black;
-    top: 10vw
+    top: 10vw;
   }
   .sub-top a {
     font-size: 5vw;
@@ -405,7 +418,8 @@ img {
     justify-content: space-around;
     width: 97vw;
   }
-  .content-about p, .xp {
+  .content-about p,
+  .xp {
     font-size: 4.5vw;
   }
   .content-about h5 {
@@ -425,5 +439,8 @@ img {
   .footer p {
     font-size: 2vw !important;
     padding: 1vw;
+  }
+  .text {
+    font-size: 3vw;
   }
 }
