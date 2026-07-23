@@ -202,9 +202,6 @@ img {
   font-size: 1vw !important;
   padding: 1.5vw;
 }
-.text {
-  font-size: 3vw;
-}
 
 @media (max-width: 1440px) {
   html,
@@ -309,6 +306,10 @@ img {
     align-items: center;
     justify-content: center;
   }
+  .middle p {
+    color: #20c20e;
+    font-size: 3vw;
+  }
   .group1 {
     all: revert;
     width: 98vw;
@@ -332,9 +333,6 @@ img {
   .footer p {
     font-size: 1.5vw !important;
     padding: 2vw;
-  }
-  .text {
-    font-size: 3vw;
   }
 }
 
@@ -418,6 +416,11 @@ img {
     justify-content: space-around;
     width: 97vw;
   }
+  .middle p {
+  color: #20c20e;
+  font-size: 6vw;
+  text-align: center;
+}
   .content-about p,
   .xp {
     font-size: 4.5vw;
@@ -439,8 +442,5 @@ img {
   .footer p {
     font-size: 2vw !important;
     padding: 1vw;
-  }
-  .text {
-    font-size: 3vw;
   }
 }
