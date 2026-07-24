@@ -259,7 +259,6 @@ button {
   font-family: "Arial Narrow", Arial, sans-serif;
   color: #000;
   text-align: center;
-  filter: blur(1px);
   width: 600px;
   overflow-wrap: break-word;
 }
