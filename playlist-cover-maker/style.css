@@ -23,7 +23,9 @@ body {
   font-family: Arial, sans-serif;
   color: #fff;
 }
-
+.hide-button {
+  display: none;
+}
 .app {
   height: 100vh;
   display: flex;
@@ -382,53 +384,58 @@ button {
     max-height: 85vh;
     overflow-y: auto;
   }
-}
+  .d2-top {
+    height: calc(107px * (min(600px, 90vw) / 600));
+  }
 
-.d2-top {
-  height: calc(107px * (min(600px, 90vw) / 600));
-}
+  .d2-middle {
+    height: calc(132px * (min(600px, 90vw) / 600));
+    font-size: calc(60px * (min(600px, 90vw) / 600));
+  }
 
-.d2-middle {
-  height: calc(132px * (min(600px, 90vw) / 600));
-  font-size: calc(60px * (min(600px, 90vw) / 600));
-}
+  .d2-bottom {
+    height: calc(361px * (min(600px, 90vw) / 600));
+  }
 
-.d2-bottom {
-  height: calc(361px * (min(600px, 90vw) / 600));
-}
+  /* design 4 */
+  .d4-top {
+    height: calc(300px * (min(600px, 90vw) / 600));
+  }
 
-/* design 4 */
-.d4-top {
-  height: calc(300px * (min(600px, 90vw) / 600));
-}
+  .d4-middle {
+    height: calc(300px * (min(600px, 90vw) / 600));
+  }
 
-.d4-middle {
-  height: calc(300px * (min(600px, 90vw) / 600));
-}
+  .d4-bottom {
+    font-size: calc(67px * (min(600px, 90vw) / 600));
+    letter-spacing: calc(-4px * (min(600px, 90vw) / 600));
+  }
 
-.d4-bottom {
-  font-size: calc(67px * (min(600px, 90vw) / 600));
-  letter-spacing: calc(-4px * (min(600px, 90vw) / 600));
-}
+  #d1Title {
+    font-size: calc(80px * (min(600px, 90vw) / 600));
+  }
 
-#d1Title {
-  font-size: calc(80px * (min(600px, 90vw) / 600));
-}
+  .d3-text {
+    font-size: calc(80px * (min(600px, 90vw) / 600));
+  }
 
-.d3-text {
-  font-size: calc(80px * (min(600px, 90vw) / 600));
-}
+  .d5-text {
+    font-size: calc(120px * (min(600px, 90vw) / 600));
+    letter-spacing: calc(1px * (min(600px, 90vw) / 600));
+  }
 
-.d5-text {
-  font-size: calc(120px * (min(600px, 90vw) / 600));
-  letter-spacing: calc(1px * (min(600px, 90vw) / 600));
-}
-
-.modal-box {
-  width: 90%;
-  height: auto;
-  max-height: 85vh;
-  overflow-y: auto;
+  .modal-box {
+    width: 90%;
+    height: auto;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+  .hide-button {
+    display: block;
+  }
+  #downloadBtn {
+    display: none;
+  }
 }
 
 /* ── MOBILE (≤600px) ── */
