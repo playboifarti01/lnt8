@@ -137,6 +137,10 @@ img {
   color: #20c20e !important;
   width: 80vw;
 }
+.smth {
+  display: flex;
+  justify-content: flex-start;
+}
 
 .content-about p,
 .xp {
