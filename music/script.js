@@ -29,7 +29,7 @@ async function loadSpotify() {
                         alt="${data.current.song}"                                 style="width: 7vw;   border: #20c20e 0.2vw solid; padding: 1vw; margin-right: 2vw"
 
                     >
-                        <p>${data.current.song} - ${data.current.artist}</p>
+                        <p><a href="${data.current.url}" target="_blank"> ${data.current.song} - ${data.current.artist}</a></p>
 
                 `
                 : `
@@ -55,7 +55,7 @@ async function loadSpotify() {
 
 
                             >
-                                <p>${song.song} - ${song.artist}</p>
+                                <p><a href="${song.url}" target="_blank">${song.song} - ${song.artist}</a></p>
                             
                             
 </div>
