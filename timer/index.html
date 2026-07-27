@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fullscreen Timer</title>
+    <title>Timer</title>
 
     <style>
       * {
@@ -75,26 +75,6 @@
       button:hover {
         opacity: 0.8;
       }
-
-      /* Fullscreen */
-      body:fullscreen {
-        background: #000;
-      }
-
-      body:fullscreen .timer-container {
-        transform: scale(2);
-        background: transparent;
-      }
-
-      body:fullscreen #timer {
-        font-size: 140px;
-      }
-
-      body:fullscreen input,
-      body:fullscreen button,
-      body:fullscreen h1 {
-        display: none;
-      }
     </style>
   </head>
 
@@ -140,7 +120,6 @@
       let interval = null;
       let running = false;
 
-      // Display timer
       function updateDisplay() {
         let hours = Math.floor(time / 3600);
         let minutes = Math.floor((time % 3600) / 60);
@@ -152,21 +131,21 @@
           `${String(seconds).padStart(2, "0")}`;
       }
 
-      // Live typing preview
+      // Update display while typing
       function updateTypingPreview() {
         if (!running) {
           let hours = Number(hoursInput.value) || 0;
           let minutes = Number(minutesInput.value) || 0;
           let seconds = Number(secondsInput.value) || 0;
 
-          if (seconds > 59) {
-            seconds = 59;
-            secondsInput.value = 59;
-          }
-
           if (minutes > 59) {
             minutes = 59;
             minutesInput.value = 59;
+          }
+
+          if (seconds > 59) {
+            seconds = 59;
+            secondsInput.value = 59;
           }
 
           timerDisplay.textContent =
@@ -180,24 +159,9 @@
       minutesInput.addEventListener("input", updateTypingPreview);
       secondsInput.addEventListener("input", updateTypingPreview);
 
-      // Fullscreen
-      function enterFullscreen() {
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen();
-        }
-      }
-
-      function exitFullscreen() {
-        if (document.fullscreenElement) {
-          document.exitFullscreen();
-        }
-      }
-
-      // Start timer
+      // Start
       startBtn.onclick = () => {
         if (!running) {
-          enterFullscreen();
-
           if (time === 0) {
             let hours = Number(hoursInput.value) || 0;
             let minutes = Number(minutesInput.value) || 0;
@@ -221,8 +185,6 @@
               running = false;
 
               alert("Time's up!");
-
-              exitFullscreen();
             }
           }, 1000);
         }
@@ -248,11 +210,9 @@
         hoursInput.value = "";
         minutesInput.value = "";
         secondsInput.value = "";
-
-        exitFullscreen();
       };
 
-      // Spacebar control
+      // Spacebar start/pause
       document.addEventListener("keydown", (e) => {
         if (e.code === "Space") {
           e.preventDefault();
