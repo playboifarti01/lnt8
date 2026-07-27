@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Timer</title>
+
+    <title>Mobile Timer</title>
 
     <style>
       * {
@@ -14,66 +15,112 @@
       body {
         height: 100vh;
         margin: 0;
+
         display: flex;
         justify-content: center;
         align-items: center;
+
         background: #111;
         color: white;
       }
 
       .timer-container {
+        width: 90%;
+        max-width: 500px;
+
         background: #222;
-        padding: 40px;
+
+        padding: 30px;
+
         border-radius: 20px;
+
         text-align: center;
       }
 
       h1 {
-        margin-bottom: 20px;
+        font-size: 32px;
+      }
+
+      .inputs {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
       }
 
       .inputs input {
-        width: 110px;
-        padding: 12px;
-        margin: 5px;
-        font-size: 18px;
+        width: 30%;
+
+        padding: 15px;
+
+        font-size: 22px;
+
         text-align: center;
-        border-radius: 8px;
+
+        border-radius: 10px;
+
         border: none;
       }
 
       #timer {
-        font-size: 70px;
-        margin: 30px 0;
+        font-size: clamp(45px, 15vw, 80px);
+
+        margin: 35px 0;
+
         font-weight: bold;
       }
 
       button {
-        padding: 12px 25px;
+        width: 30%;
+
+        padding: 15px 10px;
+
         margin: 5px;
+
         border: none;
-        border-radius: 10px;
+
+        border-radius: 12px;
+
+        font-size: 18px;
+
         cursor: pointer;
-        font-size: 16px;
       }
 
       #startBtn {
         background: #4caf50;
+
         color: white;
       }
 
       #pauseBtn {
         background: #ff9800;
+
         color: white;
       }
 
       #resetBtn {
         background: #f44336;
+
         color: white;
       }
 
-      button:hover {
-        opacity: 0.8;
+      button:active {
+        transform: scale(0.95);
+      }
+
+      @media (max-width: 500px) {
+        .timer-container {
+          padding: 20px;
+        }
+
+        button {
+          width: 100%;
+
+          margin-top: 10px;
+        }
+
+        .inputs input {
+          width: 33%;
+        }
       }
     </style>
   </head>
@@ -83,26 +130,20 @@
       <h1>Timer</h1>
 
       <div class="inputs">
-        <input id="hoursInput" type="number" placeholder="Hours" min="0" />
+        <input id="hoursInput" type="tel" placeholder="HH" />
 
-        <input id="minutesInput" type="number" placeholder="Minutes" min="0" />
+        <input id="minutesInput" type="tel" placeholder="MM" />
 
-        <input
-          id="secondsInput"
-          type="number"
-          placeholder="Seconds"
-          min="0"
-          max="59"
-        />
+        <input id="secondsInput" type="tel" placeholder="SS" />
       </div>
 
       <div id="timer">00:00:00</div>
 
-      <div>
-        <button id="startBtn">Start</button>
-        <button id="pauseBtn">Pause</button>
-        <button id="resetBtn">Reset</button>
-      </div>
+      <button id="startBtn">Start</button>
+
+      <button id="pauseBtn">Pause</button>
+
+      <button id="resetBtn">Reset</button>
     </div>
 
     <script>
@@ -120,84 +161,92 @@
       let interval = null;
       let running = false;
 
-      function updateDisplay() {
+      function formatTime() {
         let hours = Math.floor(time / 3600);
+
         let minutes = Math.floor((time % 3600) / 60);
+
         let seconds = time % 60;
 
         timerDisplay.textContent =
-          `${String(hours).padStart(2, "0")}:` +
-          `${String(minutes).padStart(2, "0")}:` +
-          `${String(seconds).padStart(2, "0")}`;
+          String(hours).padStart(2, "0") +
+          ":" +
+          String(minutes).padStart(2, "0") +
+          ":" +
+          String(seconds).padStart(2, "0");
       }
 
-      // Update display while typing
-      function updateTypingPreview() {
+      function preview() {
         if (!running) {
-          let hours = Number(hoursInput.value) || 0;
-          let minutes = Number(minutesInput.value) || 0;
-          let seconds = Number(secondsInput.value) || 0;
+          let h = Number(hoursInput.value) || 0;
 
-          if (minutes > 59) {
-            minutes = 59;
+          let m = Number(minutesInput.value) || 0;
+
+          let s = Number(secondsInput.value) || 0;
+
+          if (m > 59) {
+            m = 59;
+
             minutesInput.value = 59;
           }
 
-          if (seconds > 59) {
-            seconds = 59;
+          if (s > 59) {
+            s = 59;
+
             secondsInput.value = 59;
           }
 
           timerDisplay.textContent =
-            `${String(hours).padStart(2, "0")}:` +
-            `${String(minutes).padStart(2, "0")}:` +
-            `${String(seconds).padStart(2, "0")}`;
+            String(h).padStart(2, "0") +
+            ":" +
+            String(m).padStart(2, "0") +
+            ":" +
+            String(s).padStart(2, "0");
         }
       }
 
-      hoursInput.addEventListener("input", updateTypingPreview);
-      minutesInput.addEventListener("input", updateTypingPreview);
-      secondsInput.addEventListener("input", updateTypingPreview);
+      hoursInput.oninput = preview;
+      minutesInput.oninput = preview;
+      secondsInput.oninput = preview;
 
-      // Start
       startBtn.onclick = () => {
-        if (!running) {
-          if (time === 0) {
-            let hours = Number(hoursInput.value) || 0;
-            let minutes = Number(minutesInput.value) || 0;
-            let seconds = Number(secondsInput.value) || 0;
+        if (running) return;
 
-            time = hours * 3600 + minutes * 60 + seconds;
-          }
+        if (time === 0) {
+          let h = Number(hoursInput.value) || 0;
 
-          if (time <= 0) return;
+          let m = Number(minutesInput.value) || 0;
 
-          running = true;
+          let s = Number(secondsInput.value) || 0;
 
-          interval = setInterval(() => {
-            if (time > 0) {
-              time--;
-
-              updateDisplay();
-            } else {
-              clearInterval(interval);
-
-              running = false;
-
-              alert("Time's up!");
-            }
-          }, 1000);
+          time = h * 3600 + m * 60 + s;
         }
+
+        if (time <= 0) return;
+
+        running = true;
+
+        interval = setInterval(() => {
+          time--;
+
+          formatTime();
+
+          if (time <= 0) {
+            clearInterval(interval);
+
+            running = false;
+
+            alert("Time's up!");
+          }
+        }, 1000);
       };
 
-      // Pause
       pauseBtn.onclick = () => {
         clearInterval(interval);
 
         running = false;
       };
 
-      // Reset
       resetBtn.onclick = () => {
         clearInterval(interval);
 
@@ -205,27 +254,16 @@
 
         time = 0;
 
-        updateDisplay();
-
         hoursInput.value = "";
+
         minutesInput.value = "";
+
         secondsInput.value = "";
+
+        formatTime();
       };
 
-      // Spacebar start/pause
-      document.addEventListener("keydown", (e) => {
-        if (e.code === "Space") {
-          e.preventDefault();
-
-          if (running) {
-            pauseBtn.click();
-          } else {
-            startBtn.click();
-          }
-        }
-      });
-
-      updateDisplay();
+      formatTime();
     </script>
   </body>
 </html>
