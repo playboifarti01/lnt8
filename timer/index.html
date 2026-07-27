@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fullscreen Timer</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #111;
+        color: white;
+      }
+
+      .timer-container {
+        background: #222;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      .inputs input {
+        width: 110px;
+        padding: 12px;
+        margin: 5px;
+        font-size: 18px;
+        text-align: center;
+        border-radius: 8px;
+        border: none;
+      }
+
+      #timer {
+        font-size: 70px;
+        margin: 30px 0;
+        font-weight: bold;
+      }
+
+      button {
+        padding: 12px 25px;
+        margin: 5px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      #startBtn {
+        background: #4caf50;
+        color: white;
+      }
+
+      #pauseBtn {
+        background: #ff9800;
+        color: white;
+      }
+
+      #resetBtn {
+        background: #f44336;
+        color: white;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+
+      /* Fullscreen */
+      body:fullscreen {
+        background: #000;
+      }
+
+      body:fullscreen .timer-container {
+        transform: scale(2);
+        background: transparent;
+      }
+
+      body:fullscreen #timer {
+        font-size: 140px;
+      }
+
+      body:fullscreen input,
+      body:fullscreen button,
+      body:fullscreen h1 {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="timer-container">
+      <h1>Timer</h1>
+
+      <div class="inputs">
+        <input id="hoursInput" type="number" placeholder="Hours" min="0" />
+
+        <input id="minutesInput" type="number" placeholder="Minutes" min="0" />
+
+        <input
+          id="secondsInput"
+          type="number"
+          placeholder="Seconds"
+          min="0"
+          max="59"
+        />
+      </div>
+
+      <div id="timer">00:00:00</div>
+
+      <div>
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+    </div>
+
+    <script>
+      const timerDisplay = document.getElementById("timer");
+
+      const hoursInput = document.getElementById("hoursInput");
+      const minutesInput = document.getElementById("minutesInput");
+      const secondsInput = document.getElementById("secondsInput");
+
+      const startBtn = document.getElementById("startBtn");
+      const pauseBtn = document.getElementById("pauseBtn");
+      const resetBtn = document.getElementById("resetBtn");
+
+      let time = 0;
+      let interval = null;
+      let running = false;
+
+      // Display timer
+      function updateDisplay() {
+        let hours = Math.floor(time / 3600);
+        let minutes = Math.floor((time % 3600) / 60);
+        let seconds = time % 60;
+
+        timerDisplay.textContent =
+          `${String(hours).padStart(2, "0")}:` +
+          `${String(minutes).padStart(2, "0")}:` +
+          `${String(seconds).padStart(2, "0")}`;
+      }
+
+      // Live typing preview
+      function updateTypingPreview() {
+        if (!running) {
+          let hours = Number(hoursInput.value) || 0;
+          let minutes = Number(minutesInput.value) || 0;
+          let seconds = Number(secondsInput.value) || 0;
+
+          if (seconds > 59) {
+            seconds = 59;
+            secondsInput.value = 59;
+          }
+
+          if (minutes > 59) {
+            minutes = 59;
+            minutesInput.value = 59;
+          }
+
+          timerDisplay.textContent =
+            `${String(hours).padStart(2, "0")}:` +
+            `${String(minutes).padStart(2, "0")}:` +
+            `${String(seconds).padStart(2, "0")}`;
+        }
+      }
+
+      hoursInput.addEventListener("input", updateTypingPreview);
+      minutesInput.addEventListener("input", updateTypingPreview);
+      secondsInput.addEventListener("input", updateTypingPreview);
+
+      // Fullscreen
+      function enterFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        }
+      }
+
+      function exitFullscreen() {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        }
+      }
+
+      // Start timer
+      startBtn.onclick = () => {
+        if (!running) {
+          enterFullscreen();
+
+          if (time === 0) {
+            let hours = Number(hoursInput.value) || 0;
+            let minutes = Number(minutesInput.value) || 0;
+            let seconds = Number(secondsInput.value) || 0;
+
+            time = hours * 3600 + minutes * 60 + seconds;
+          }
+
+          if (time <= 0) return;
+
+          running = true;
+
+          interval = setInterval(() => {
+            if (time > 0) {
+              time--;
+
+              updateDisplay();
+            } else {
+              clearInterval(interval);
+
+              running = false;
+
+              alert("Time's up!");
+
+              exitFullscreen();
+            }
+          }, 1000);
+        }
+      };
+
+      // Pause
+      pauseBtn.onclick = () => {
+        clearInterval(interval);
+
+        running = false;
+      };
+
+      // Reset
+      resetBtn.onclick = () => {
+        clearInterval(interval);
+
+        running = false;
+
+        time = 0;
+
+        updateDisplay();
+
+        hoursInput.value = "";
+        minutesInput.value = "";
+        secondsInput.value = "";
+
+        exitFullscreen();
+      };
+
+      // Spacebar control
+      document.addEventListener("keydown", (e) => {
+        if (e.code === "Space") {
+          e.preventDefault();
+
+          if (running) {
+            pauseBtn.click();
+          } else {
+            startBtn.click();
+          }
+        }
+      });
+
+      updateDisplay();
+    </script>
+  </body>
+</html>
