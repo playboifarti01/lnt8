@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../favicon/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
+    <title>linh nguyen</title>
+    <style>
+      img {
+        width: 7vw !important;
+        height: 8vw;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="everything">
+      <div class="top">
+        <div class="header">
+          <a href="../me/" class="about">about</a>
+        </div>
+
+        <div class="header">
+          <a href="../tools/" class="tools">tools</a>
+        </div>
+        <div class="header logo-header">
+          <a href="../"><div class="logo-container"></div></a>
+        </div>
+        <div class="header">
+          <a href="../blackjack/" class="games active">games</a>
+        </div>
+        <div class="header">
+          <a href="../contacts/" class="contacts">contacts</a>
+        </div>
+      </div>
+      <div class="middle-about">
+        <div class="sub-top">
+          <div class="sub-header">
+            <a href="../blackjack/" class="active">blackjack</a>
+          </div>
+        </div>
+        <div class="content-about" style="align-items: center">
+          <div class="table">
+            <div class="hand-section">
+              <p>dealer (<span id="dealer-score">0</span>)</p>
+              <div id="dealer-cards" class="cards"></div>
+            </div>
+
+            <div class="hand-section">
+              <div style="display: flex">
+                <p id="text1" class="hidden">
+                  hand 1 (<span id="split-1-score">0</span>)
+                </p>
+                <div id="player-split-cards" class="cards hidden"></div>
+              </div>
+              <div style="display: flex">
+                <p id="text2" class="hidden">
+                  hand 2 (<span id="split-2-score">0</span>)
+                </p>
+                <div id="player-cards" class="cards"></div>
+              </div>
+              <p id="you-score">you (<span id="player-score">0</span>)</p>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div style="text-align: center">
+              <a id="split-btn" class="func hidden"><p>split</p></a>
+            </div>
+            <div style="text-align: center">
+              <a id="hit-btn" class="func"><p>hit</p></a>
+            </div>
+            <div style="text-align: center">
+              <a id="stand-btn" class="func"><p>stand</p></a>
+            </div>
+            <div style="text-align: center">
+              <a id="deal-btn" class="func"><p>new game</p></a>
+            </div>
+
+            <br />
+          </div>
+
+          <p id="message" class="message"></p>
+        </div>
+
+        <script src="cards.js"></script>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Copyright © 2026 Linh Nguyen. All rights reserved.</p>
+    </div>
+    <script src="cards.js"></script>
+  </body>
+</html>

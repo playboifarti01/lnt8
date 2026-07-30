@@ -4,6 +4,7 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 * {
   margin: 0;
@@ -38,6 +39,7 @@ h3 {
 
 a:hover {
   color: #808080;
+  cursor: pointer;
 }
 
 div {
@@ -49,6 +51,12 @@ img {
   width: 100%;
 }
 
+input {
+  color: white;
+}
+.hidden {
+  display: none !important;
+}
 .everything {
   display: flex;
   flex-direction: column;
@@ -90,7 +98,6 @@ img {
   background-image: url("../img/logo.png"); /* The original image */
   background-size: cover; /* Ensures the image fills the area */
   background-position: center;
-  transition: background-image 0 ease;
 }
 .logo-container:hover {
   background-image: url("../img/logo2.png");
@@ -135,7 +142,22 @@ img {
   flex-direction: column;
   align-items: flex-start;
   color: #20c20e !important;
-  width: 80vw;
+  width: 75vw;
+  border: #20c20e 0.2vw solid;
+  border-radius: 2vw;
+  padding: 3vw;
+}
+
+.games-about {
+  font-size: 1.8vw;
+  display: flex;
+  flex-direction: column;
+  color: #20c20e !important;
+  width: 75vw;
+  border: #20c20e 0.2vw solid;
+  border-radius: 2vw;
+  padding: 3vw;
+  height: auto;
 }
 .smth {
   display: flex;
@@ -178,14 +200,6 @@ img {
   justify-content: flex-start;
 }
 
-.content-about {
-  display: flex;
-  flex-direction: column;
-  width: 75vw;
-  border: #20c20e 0.2vw solid;
-  border-radius: 2vw;
-  padding: 3vw;
-}
 .content-about p,
 .xp {
   font-size: 1.1vw;
@@ -220,6 +234,26 @@ img {
   margin: 0.5vw;
   border: #20c20e 0.1vw solid;
 }
+.hand-section {
+  display: flex;
+  flex-direction: column;
+}
+.table {
+  display: flex;
+  flex-direction: column;
+}
+.cards img {
+  width: 5vw;
+  margin: 0.5vw;
+  padding: 0;
+  border-radius: 0;
+}
+.func {
+  margin: 1vw;
+  text-decoration: none !important;
+  border: #20c20e 0.2vw solid;
+  padding: 0.5vw;
+}
 
 @media (max-width: 1024px) {
   html,
@@ -252,7 +286,6 @@ img {
     background-image: url("../img/logo.png"); /* The original image */
     background-size: cover; /* Ensures the image fills the area */
     background-position: center;
-    transition: background-image 0 ease;
   }
   .logo-container:hover {
     background-image: url("../img/logo2.png");
@@ -369,6 +402,12 @@ img {
     width: 44vw;
     margin: 0.5vw;
     border: #20c20e 0.1vw solid;
+  }
+  .hidden {
+    display: none !important;
+  }
+  .func {
+    width: 80%;
   }
 }
 
@@ -496,4 +535,7 @@ img {
     margin: 0.5vw;
     border: #20c20e 0.1vw solid;
   }
+}
+.hidden {
+  display: none !important;
 }
