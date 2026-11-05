@@ -7,17 +7,17 @@ async function loadSpotify() {
 
   const container = document.querySelector(".content-about");
 
-  container.innerHTML = `
+  container.innerHTML = `          <a href="https://open.spotify.com/user/31svlfiwmavhyut6mnanagwikwpe" target="_blank">
+          <p class="xp">My Spotify account</p></a
+          >
+          <br>
          <a href="https://stats.fm/lnt" target="_blank">
             <p class="xp">My stats.fm account</p></a
           >
 
           <br />
 
-          <a href="https://open.spotify.com/user/31svlfiwmavhyut6mnanagwikwpe" target="_blank">
-          <p class="xp">My Spotify account</p></a
-          >
-          <br>
+
             <h5>Currently Listening</h5> <br>
             <div class="smth">
             ${
